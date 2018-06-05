@@ -35,22 +35,19 @@ class Population():
         self.trt_interest = 'PH'
         
 
-    def Creation(self,tab_qtl,tab_loci,dict_qtl,genoPop,pheno):
-        # Information on the population phenotype
-        datPop = pheno[0] # phenotype table
-        header = pheno[1] # traits
-        N_ind = pheno[2] # population size
+    def Creation(self,tab_qtl,tab_loci,genoPop,N_ind):
 
         # Genetic information
         list_chrom = list(np.add(tab_qtl[:,1],-1))
         list_pos = list(tab_qtl[:,2])
         list_names = list(tab_qtl[:,4])
-        pop = sim.Population(size=N_ind, loci=[0]*self.nchrom, ploidy=self.ploidy, infoFields=header)
+        pop = sim.Population(size=N_ind, loci=[0]*self.nchrom, ploidy=self.ploidy, infoFields=['fitness'])
         pop.addLoci(chrom=list(np.add(tab_loci[:,1],-1)), pos=list(tab_loci[:,2]))
         pop.addLoci(chrom=list_chrom, pos=list_pos, lociNames=list_names)
         
         # Information fields initialization
-        self.InfoPop(pop,header,datPop)
+        fitness = [1/N_ind]*N_ind
+        pop.setIndInfo(fitness,'fitness')
         
         # Retrieval of QTL indices for traits of interest
         qtl_names = tab_qtl[:,4]
@@ -67,23 +64,6 @@ class Population():
                 ind.setAllele(int(allel[1]),locus,1)
         return(pop)
 
-    
-    def InfoPop(self,pop,header,datPop):
-        for i in range(len(header)):
-            trt = header[i]
-            val = list(datPop[:,i+1]) # vector of values for trait i
-            pop.setIndInfo(val,trt)
-            if trt == "offspring":
-                offsp = val
-        fitness = self.calcfitness(list(offsp))
-        pop.addInfoFields('fitness')
-        pop.setIndInfo(fitness,'fitness')
-        return(pop)
-        
-    def calcfitness(self,offsp):
-        all_offsp = sum(offsp)
-        fitness = offsp/all_offsp
-        return(list(fitness))
 
     
 

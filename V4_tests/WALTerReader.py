@@ -29,19 +29,9 @@ import pandas as pd
 
 class WALTerReader():
     
-    def __init__(self):
-        self.fileGeno = "dict3.txt" # file with the population genotype
-        self.filePheno = "data_pheno3.csv" # file with the population phenotype
-        # self.dominance = "complete"
-    
-    def readFilePheno(self):
-        file = open(self.filePheno,"rb")
-        df = pd.read_csv(file,delimiter="\t")
-        file.close()
-        data = np.array(df)
-        header = list(df)[1:np.shape(data)[1]]
-        Nb = np.shape(data)[0]
-        return([data,header,Nb])
+    def __init__(self,fileGeno):
+        self.fileGeno = fileGeno
+        self.Ngen = 10
         
         
     def setConversion(self,data): 
@@ -76,14 +66,12 @@ class WALTerReader():
     
     def getGenoPop(self,data):
     # data is the QTL table
-        pheno = self.readFilePheno()
         N_qtl = np.shape(data)[0]
-        N_ind = pheno[2]
-        print("CHECK",N_qtl)
         try :
             file = open(self.fileGeno,"rb")
             listGeno = eval(file.read())
             file.close()
+            N_ind = len(listGeno)
             if len(list(listGeno.values())[0]) != N_qtl:
                 print("Warning : incorrect file, genotype randomly generated (wrong number of qtls)")
                 listGeno = {}
@@ -94,13 +82,14 @@ class WALTerReader():
                     listGeno[ind] = subdict
         except FileNotFoundError :
             listGeno = {}
+            N_ind = self.Ngen
             for ind in range(N_ind):
                 subdict = {}
                 for qtl in range(N_qtl):
                     subdict[qtl] = [rd.choice([0,1]),rd.choice([0,1])]
                 listGeno[ind] = subdict
             print("Warning :incorrect file, genotype randomly generated (wrong file or path name)")
-        return(listGeno)
+        return([listGeno,N_ind])
     
     def getAllelTab(self,listGeno):
     # listGeno is the dictionary list of the population genotype
@@ -131,10 +120,10 @@ class WALTerReader():
         return(tab_out)
     
     def dataPheno(self,data):
-        dict_genoPop = self.getGenoPop(data)
-        genoPop = self.getAllelTab(dict_genoPop)
+        genoPop = self.getGenoPop(data)
+        dict_genoPop = genoPop[0]
+        N_ind = genoPop[1]
+        tabgenoPop = self.getAllelTab(dict_genoPop)
         conv = self.setConversion(data)
-        pheno = self.readFilePheno()
-        tab = self.getQTLtab(genoPop,data)
-        return([genoPop,conv,pheno,tab])
+        return([N_ind,tabgenoPop,conv])
 

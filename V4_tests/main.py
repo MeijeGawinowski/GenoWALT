@@ -39,57 +39,40 @@ qtl_data = qtl_object.dataQTL()
 tab_qtl = qtl_data[0][0] # array with the genetic positions of QTLs
 dict_qtl = qtl_data[0][1] # dictionary list of the QTLs
 tab_loci = qtl_data[1] # genetic positions of other loci
-print("QTL table : ", tab_qtl)
-print("QTL dictionnary : ", dict_qtl)
-print("Loci table : ", tab_loci)
+# print("QTL table : ", tab_qtl)
+# print("QTL dictionnary : ", dict_qtl)
+# print("Loci table : ", tab_loci)
 
 
 
 # Import of WALTer data (genotype and phenotype)
-walter_object = WALTerReader()
-data_walter = walter_object.dataPheno(tab_qtl)
-genoPop = data_walter[0] # population genotype
-print("Parent population genotype : ", genoPop)
-conv = data_walter[1] # conversion table between alleles and QTL values
-print("Conversion table QTL/allel : ", conv)
-pheno = data_walter[2] # phenotype object with the population phenotype table, the header (list of the different traits) and the number of individuals in the population
-print("Parent population phenotype : ", pheno)
-qtl_tab = data_walter[3]
-print("Table des QTL : ",qtl_tab)
+init_walter_object = WALTerReader("dict3.txt")
+init_data_walter = init_walter_object.dataPheno(tab_qtl)
+N_ind = init_data_walter[0] # number of individuals in the population
+init_genoPop = init_data_walter[1] # population genotype
+conv = init_data_walter[2] # conversion table between alleles and QTL values
+
 
 
 
 # Creation of the parent population 
-parpop_object = Population()
-parpop = parpop_object.Creation(tab_qtl,tab_loci,dict_qtl,genoPop,pheno)
-#mean_PH = parpop_object.getMean(parpop)
-print("Parent population :")
-sim.dump(parpop)
-#print("PH mean = ", mean_PH)
-print("Information Fields of the parent population : ",parpop.infoFields())
+init_pop_object = Population()
+init_pop = init_pop_object.Creation(tab_qtl,tab_loci,init_genoPop,N_ind)
 
 
+N_gen = 5
 
-# Reproduction of the parent population
-simu_object = Simulation()
-offpop = simu_object.create_controlledSimulation(parpop)
-print("Offsprings population : ")
-sim.dump(offpop)
-print("Information Fields of the offspring population : ",offpop.infoFields())
-
-
-
-# Retrieval of genotypic and phenotypic data of the offspring population
-off_object = Offspring(qtl_object.list_trt)
-res = off_object.Result(offpop,conv,tab_qtl,qtl_object.choice)
-print("Genotype dictionary of the offspring population (dictRes.txt file) : ", res[0])
-print("Phenotype of the traits of interest of the offspring population (phenoRes.csv file): ", res[1])
-
-modeTagger=offpop.indInfo('mode')
-print("Reproduction mode : ",modeTagger)
-fathers=offpop.indInfo('father_idx')
-print("Fathers ids : ",fathers)
-mothers=offpop.indInfo('mother_idx')
-print("Mothers ids : ",mothers)
-print("offpsring pop size = ",offpop.popSize())
-export(offpop,format="genepop",adjust=1,output="offpop.txt")
+parpop = init_pop # initialization of the parental population (gen 0)
+export(init_pop,format="genepop",adjust=1,output="pop0.txt")
+for g in range(1,N_gen):
+	print("Generation nb ",g)
+	# Reproduction of the parent population
+	simu_object = Simulation(N_ind)
+	offpop = simu_object.create_controlledSimulation(parpop)
+	namefile = "pop"+str(g)+".txt"
+	export(offpop,format="genepop",adjust=1,output=namefile)
+	off_object = Offspring("")
+	geno_off = off_object.Result(offpop,conv,tab_qtl) # dictionary of new pop
+	parpop_object = Population()
+	parpop = parpop_object.Creation(tab_qtl,tab_loci,geno_off,N_ind)
+	sim.dump(parpop)

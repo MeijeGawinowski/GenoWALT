@@ -29,13 +29,13 @@ import copy as cp
 
 class Simulation():
     
-    def __init__(self):
+    def __init__(self,N):
         self.generations = 10
         self.replicat = 1
         self.selfing = 1.0 # proportion of autogamy in the population
         self.selection = 'fitness' # selection trait for reproduction
         self.opt = "Haldane" # computation option for recombination rates
-        self.newSize = 10
+        self.newSize = N
         self.attr = "mult"
 
             
@@ -47,7 +47,7 @@ class Simulation():
         self.postOps = self.create_PostOps()
         self.finalOps = self.create_FinalOps()
         
-		#initialization of new information fields
+        #initialization of new information fields
         parpop.addInfoFields(['mode','mother_idx','father_idx'])
         parpop.evolve(initOps=self.initOps, preOps=self.preOps, matingScheme=self.mating, finalOps=self.finalOps,gen=self.generations)
 
@@ -60,7 +60,7 @@ class Simulation():
 
         recomb_loci = range(N_loc-1) # for the computation of recombination rate per locus we don't take into account the last locus (because it has already been taken into account by the computation of previous loci)
         
-        Des = list(parpop.indInfo('offspring'))
+        Des = list(parpop.indInfo('fitness'))
                 
         N_ind = parpop.popSize()
         ind_idx=list(range(N_ind))
@@ -80,7 +80,7 @@ class Simulation():
                 prop.append(p)
             par = list(np.random.choice(list(range(N_ind)),size=self.newSize, replace=True, p=prop))
             statN_des = [par.count(i) for i in range(N_ind)]
-        print("Nb of offspring per parent : ",statN_des)
+        # print("Nb of offspring per parent : ",statN_des)
         dynN_des=cp.deepcopy(statN_des) # updated during reproduction process    
         newpop=cp.deepcopy(parpop)
         newpop.removeIndividuals(indexes=range(N_ind))
@@ -90,15 +90,15 @@ class Simulation():
             
         for i in range(N_ind):
             # for the individual i
-            print("Progeny of individual N°",i)
+            # print("Progeny of individual N°",i)
             scheme=list(np.random.choice([0,1],size=dynN_des[i], replace=True,p=[0.8,0.2]))
-            print(scheme)
+            # print(scheme)
             N_auto=scheme.count(0)
             N_allo=scheme.count(1)
-            print("allof=",N_allo," and autof=",N_auto)
+            # print("allof=",N_allo," and autof=",N_auto)
                 
             # production of offsprings by allofecondation
-            print("ALLOF")
+            # print("ALLOF")
             for j in range(N_allo): # for the j offsprings produced by allofecondation by individual i
                 list_par = list(range(N_ind))
                 copy_prop = cp.deepcopy(prop)
@@ -107,7 +107,7 @@ class Simulation():
                 Sprop = sum(copy_prop)
                 copy_prop = [copy_prop[i]/Sprop for i in range(len(copy_prop))]
                 lover=int(np.random.choice(list_par,size=1,replace=True,p=copy_prop))
-                print("Partner nb",j," for ",i," is ind nb",lover)
+                # print("Partner nb",j," for ",i," is ind nb",lover)
                     
                     # dynN_des[lover]=dynN_des[lover]-1
                 dynN_des[i]=dynN_des[i]-1
@@ -123,7 +123,7 @@ class Simulation():
                 newpop.addIndFrom(buf_pop)
             
             
-            print("AUTOF")
+            # print("AUTOF")
             # production of offsprings by autofecondation
             buf_pop=parpop.extractIndividuals(i) # parent population with one individual
             buf_pop.removeInfoFields(list(parpop.infoFields()))
