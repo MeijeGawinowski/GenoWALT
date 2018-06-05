@@ -22,8 +22,9 @@
 #
 
 import os
+from simuPOP.utils import export
 
-os.chdir('/home/meije/Documents/CODE/V4C')
+os.chdir('/home/meije/Documents/GenoWALT/V4_tests')
 
 from Reader import *
 from WALTerReader import *
@@ -91,3 +92,4 @@ print("Fathers ids : ",fathers)
 mothers=offpop.indInfo('mother_idx')
 print("Mothers ids : ",mothers)
 print("offpsring pop size = ",offpop.popSize())
+export(offpop,format="genepop",adjust=1,output="offpop.txt")
