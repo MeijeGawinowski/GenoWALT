@@ -46,7 +46,7 @@ tab_loci = qtl_data[1] # genetic positions of other loci
 
 
 # Import of WALTer data (genotype and phenotype)
-init_walter_object = WALTerReader("dict3.txt")
+init_walter_object = WALTerReader("Dict0.txt")
 init_data_walter = init_walter_object.dataPheno(tab_qtl)
 N_ind = init_data_walter[0] # number of individuals in the population
 init_genoPop = init_data_walter[1] # population genotype
@@ -58,18 +58,19 @@ conv = init_data_walter[2] # conversion table between alleles and QTL values
 # Creation of the parent population 
 init_pop_object = Population()
 init_pop = init_pop_object.Creation(tab_qtl,tab_loci,init_genoPop,N_ind)
+print("Generation nb 0")
+sim.dump(init_pop)
 
-
-N_gen = 5
+N_gen = 10
 
 parpop = init_pop # initialization of the parental population (gen 0)
-export(init_pop,format="genepop",adjust=1,output="pop0.txt")
+export(init_pop,format="genepop",adjust=1,output="Tests/LD/size100/Controlled_Reproduction/auto1/pop0.txt")
 for g in range(1,N_gen):
 	print("Generation nb ",g)
 	# Reproduction of the parent population
 	simu_object = Simulation(N_ind)
-	offpop = simu_object.create_controlledSimulation(parpop)
-	namefile = "pop"+str(g)+".txt"
+	offpop = simu_object.create_FitnessSimulation(parpop)
+	namefile = "Tests/LD/size100/Controlled_Reproduction/auto1/pop"+str(g)+".txt"
 	export(offpop,format="genepop",adjust=1,output=namefile)
 	off_object = Offspring("")
 	geno_off = off_object.Result(offpop,conv,tab_qtl) # dictionary of new pop

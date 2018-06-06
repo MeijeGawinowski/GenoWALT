@@ -57,7 +57,6 @@ class Offspring():
                 val = [int(ind.allele(qtl_indices[i],0)),int(ind.allele(qtl_indices[i],1))] # for each individual j we take the QTL i and we take the allele value on the homoeologous copy 0 of the chromosome 
                 list_allel.append(val)
             tab_out[:,i] = list_allel
-        print("Genotab",tab_out)
         return(tab_out)
         
     def dictGenoOffspring(self,genotab):
@@ -67,7 +66,6 @@ class Offspring():
             for j in range(np.shape(genotab)[1]):
                 subdict[j] = str(genotab[i,j])
             dict[i] = subdict
-        print("Offspring geno dict ",dict)
         return(dict)
        
         

@@ -41,6 +41,7 @@ class Population():
         list_chrom = list(np.add(tab_qtl[:,1],-1))
         list_pos = list(tab_qtl[:,2])
         list_names = list(tab_qtl[:,4])
+        print(list_pos)
         pop = sim.Population(size=N_ind, loci=[0]*self.nchrom, ploidy=self.ploidy, infoFields=['fitness'])
         pop.addLoci(chrom=list(np.add(tab_loci[:,1],-1)), pos=list(tab_loci[:,2]))
         pop.addLoci(chrom=list_chrom, pos=list_pos, lociNames=list_names)

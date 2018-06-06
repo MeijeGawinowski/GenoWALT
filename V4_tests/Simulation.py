@@ -36,7 +36,7 @@ class Simulation():
         self.selection = 'fitness' # selection trait for reproduction
         self.opt = "Haldane" # computation option for recombination rates
         self.newSize = N
-        self.attr = "mult"
+        self.attr = "drawing"
 
             
     def create_FitnessSimulation(self,parpop):
