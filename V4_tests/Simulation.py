@@ -95,7 +95,7 @@ class Simulation():
             # print(scheme)
             N_auto=scheme.count(0)
             N_allo=scheme.count(1)
-            print("allof=",N_allo," and autof=",N_auto)
+            # print("allof=",N_allo," and autof=",N_auto)
                 
             # production of offsprings by allofecondation
             # print("ALLOF")
