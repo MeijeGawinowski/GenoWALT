@@ -64,13 +64,13 @@ sim.dump(init_pop)
 N_gen = 10
 
 parpop = init_pop # initialization of the parental population (gen 0)
-export(init_pop,format="genepop",adjust=1,output="Tests/HW/size100/Controlled_Reproduction/allo0/pop0.txt")
+export(init_pop,format="genepop",adjust=1,output="Tests/HW/size100/Controlled_Reproduction/allo1/pop0.txt")
 for g in range(1,N_gen):
 	print("Generation nb ",g)
 	# Reproduction of the parent population
 	simu_object = Simulation(N_ind)
 	offpop = simu_object.create_controlledSimulation(parpop)
-	namefile = "Tests/HW/size100/Controlled_Reproduction/allo0/pop"+str(g)+".txt"
+	namefile = "Tests/HW/size100/Controlled_Reproduction/allo1/pop"+str(g)+".txt"
 	export(offpop,format="genepop",adjust=1,output=namefile)
 	off_object = Offspring("")
 	geno_off = off_object.Result(offpop,conv,tab_qtl) # dictionary of new pop

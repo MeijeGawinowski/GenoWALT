@@ -1,9 +1,9 @@
 Genepop 4.7.0: Hardy-Weinberg test
 
-File: pop1.txt (Outputted by simuPOP at Wed, 06 Jun 2018 07:17:09)
+File: pop1.txt (Outputted by simuPOP at Wed, 06 Jun 2018 07:55:28)
 
 Number of populations detected:    1
-Number of loci detected:           2
+Number of loci detected:           1
 
 
 Estimation of exact P-Values by the Markov chain method. 
@@ -28,7 +28,6 @@ Pop : test-100
                             ---------------
 locus       P-val   S.E.    W&C     R&H     Steps 
 ----------- ------- ------- ------- ------- ------
-qPh1        0.0000  0.0000   0.4703  0.4737  83998 switches
-partial     0.0014  0.0003   0.3319  0.3342  83337 switches
+qPh1        0.0000  0.0000   0.4635  0.4669  84218 switches
 
 Normal ending

@@ -31,7 +31,7 @@ import os
 class Reader:
     
     def __init__(self):
-        self.fileQTL = "dataQTL_2.csv" # file with genetic information of wheat
+        self.fileQTL = "dataQTL_1.csv" # file with genetic information of wheat
         self.choice = "file" # choice=file will take filteQTL to generate QTL data and choice="sampling" will generate loci and qtl randomly distributed in the genome
         self.met = "normal" # if choice=sampling and if met="normal" qtl values are sampled in a normal distribution and if met="exponential" they are sampled in an exponential distribution
         self.list_trt = ['PH','RS']
