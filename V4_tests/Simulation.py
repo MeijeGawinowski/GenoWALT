@@ -91,11 +91,11 @@ class Simulation():
         for i in range(N_ind):
             # for the individual i
             # print("Progeny of individual N°",i)
-            scheme=list(np.random.choice([0,1],size=dynN_des[i], replace=True,p=[0.8,0.2]))
+            scheme=list(np.random.choice([0,1],size=dynN_des[i], replace=True,p=[self.selfing,1-self.selfing]))
             # print(scheme)
             N_auto=scheme.count(0)
             N_allo=scheme.count(1)
-            # print("allof=",N_allo," and autof=",N_auto)
+            print("allof=",N_allo," and autof=",N_auto)
                 
             # production of offsprings by allofecondation
             # print("ALLOF")

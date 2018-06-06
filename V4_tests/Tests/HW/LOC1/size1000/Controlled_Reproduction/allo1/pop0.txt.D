@@ -1,6 +1,6 @@
 Genepop 4.7.0: Hardy-Weinberg test
 
-File: pop0.txt (Outputted by simuPOP at Wed, 06 Jun 2018 09:00:31)
+File: pop0.txt (Outputted by simuPOP at Wed, 06 Jun 2018 10:12:37)
 
 Number of populations detected:    1
 Number of loci detected:           1

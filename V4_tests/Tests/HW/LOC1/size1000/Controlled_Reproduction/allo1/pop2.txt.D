@@ -1,6 +1,6 @@
 Genepop 4.7.0: Hardy-Weinberg test
 
-File: pop2.txt (Outputted by simuPOP at Wed, 06 Jun 2018 09:00:31)
+File: pop2.txt (Outputted by simuPOP at Wed, 06 Jun 2018 10:12:40)
 
 Number of populations detected:    1
 Number of loci detected:           1
@@ -22,12 +22,12 @@ Hardy Weinberg test when H1= heterozygote deficit
 ==========================================
 
 
-Pop : SubPop0-1000
+Pop : test-1000
 -----------------------------------------
                              Fis estimates
                             ---------------
 locus       P-val   S.E.    W&C     R&H     Steps 
 ----------- ------- ------- ------- ------- ------
-qPh1        0.7351  0.0150  -0.0177 -0.0177  94907 switches
+qPh1        0.8176  0.0117  -0.0266 -0.0266  94987 switches
 
 Normal ending

@@ -1,6 +1,6 @@
 Genepop 4.7.0: Hardy-Weinberg test
 
-File: pop5.txt (Outputted by simuPOP at Wed, 06 Jun 2018 08:01:24)
+File: pop5.txt (Outputted by simuPOP at Wed, 06 Jun 2018 09:59:41)
 
 Number of populations detected:    1
 Number of loci detected:           1
@@ -28,6 +28,6 @@ Pop : test-100
                             ---------------
 locus       P-val   S.E.    W&C     R&H     Steps 
 ----------- ------- ------- ------- ------- ------
-qPh1        0.0000  0.0000   0.7025  0.7086  84244 switches
+qPh1        0.9522  0.0027  -0.1444 -0.1450  84215 switches
 
 Normal ending

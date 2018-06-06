@@ -4,7 +4,7 @@
 
 rm(list=ls())
 library(genepop)
-setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size1000/Controlled_Reproduction/allo0")
+setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/LOC1/size1000/Controlled_Reproduction/allo0")
 
 pval <- c()
 SE <- c()
@@ -36,7 +36,7 @@ write.table(data,"HW_allo0.csv")
 #########################
 
 rm(list=ls())
-setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size1000/Controlled_Reproduction/allo0.5")
+setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/LOC1/size1000/Controlled_Reproduction/allo0.5")
 pval <- c()
 SE <- c()
 WC <- c()
@@ -67,7 +67,7 @@ write.table(data,"HW_allo0.5.csv")
 #######################
 
 rm(list=ls())
-setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size1000/Controlled_Reproduction/allo1")
+setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/LOC1/size1000/Controlled_Reproduction/allo1")
 pval <- c()
 SE <- c()
 WC <- c()
@@ -92,14 +92,14 @@ gen <- 0:9
 
 data <- data.frame(gen=gen,pval=pval,SE=SE,WC=WC,RH=RH)
 write.table(data,"HW_allo1.csv")
-# attention fichier modifié par la suite
+# attention fichier non valide à corriger
 
 ###################
 ####### PLOT ######
 ###################
 
 rm(list=ls())
-setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size1000/Controlled_Reproduction")
+setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/LOC1/size1000/Controlled_Reproduction")
 
 data1 <- read.table("allo0/HW_allo0.csv")
 data2 <- read.table("allo0.5/HW_allo0.5.csv")
