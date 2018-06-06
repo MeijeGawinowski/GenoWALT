@@ -7,6 +7,6 @@ for ind in range(N_ind):
         subdict[qtl] = [rd.choice([0,1]),rd.choice([0,1])]
     dict[ind] = subdict
     
-res_dict_file = open("Dict0.txt","w")
+res_dict_file = open("Dict100_2.txt","w")
 res_dict_file.write(str(dict))
 res_dict_file.close()
