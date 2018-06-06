@@ -4,7 +4,7 @@
 
 rm(list=ls())
 library(genepop)
-setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size100/Fitness_Reproduction/allo0")
+setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size1000/Fitness_Reproduction/allo0")
 
 pval <- c()
 SE <- c()
@@ -36,7 +36,7 @@ write.table(data,"HW_allo0.csv")
 #########################
 
 rm(list=ls())
-setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size100/Fitness_Reproduction/allo0.5")
+setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size1000/Fitness_Reproduction/allo0.5")
 pval <- c()
 SE <- c()
 WC <- c()
@@ -67,7 +67,7 @@ write.table(data,"HW_allo0.5.csv")
 #######################
 
 rm(list=ls())
-setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size100/Fitness_Reproduction/allo1")
+setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size1000/Fitness_Reproduction/allo1")
 pval <- c()
 SE <- c()
 WC <- c()
@@ -92,36 +92,38 @@ gen <- 0:9
 
 data <- data.frame(gen=gen,pval=pval,SE=SE,WC=WC,RH=RH)
 write.table(data,"HW_allo1.csv")
+# attention fichier modifié par la suite
+
 
 ###################
 ####### PLOT ######
 ###################
 
 rm(list=ls())
-setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size100/Fitness_Reproduction")
+setwd("~/Documents/GenoWALT/V4_tests/Tests/HW/size1000/Fitness_Reproduction")
 
 data1 <- read.table("allo0/HW_allo0.csv")
 data2 <- read.table("allo0.5/HW_allo0.5.csv")
 data3 <- read.table("allo1/HW_allo1.csv")
 
-pdf("HW_Fitness_100.pdf")
+pdf("HW_Fitness_1000.pdf")
 par(mfrow=c(2,2))
-plot(data1$gen,data1$pval,type="o",col="firebrick2",xlab="Generation",ylab="P-value",main="Size=100, Fitness",ylim=c(0,2))
+plot(data1$gen,data1$pval,type="o",col="firebrick2",xlab="Generation",ylab="P-value",main="Size=1000, Fitness",ylim=c(0,2))
 points(data1$gen,data2$pval, type="o",col="dodgerblue4")
 points(data1$gen,data3$pval,type="o",col="forestgreen")
 legend("topright",cex=0.75,c("allo=0","allo=0.5","allo=1"),col=c("firebrick2","dodgerblue4","forestgreen"),lty=c(1,1,1))
 
-plot(data1$gen,data1$SE,type="o",col="firebrick2",xlab="Generation",ylab="SE",main="Size=100, Fitness",ylim=c(0,0.01))
+plot(data1$gen,data1$SE,type="o",col="firebrick2",xlab="Generation",ylab="SE",main="Size=1000, Fitness",ylim=c(0,0.03))
 points(data1$gen,data2$SE, type="o",col="dodgerblue4")
 points(data1$gen,data3$SE,type="o",col="forestgreen")
 legend("topright",cex=0.75,c("allo=0","allo=0.5","allo=1"),col=c("firebrick2","dodgerblue4","forestgreen"),lty=c(1,1,1))
 
-plot(data1$gen,data1$WC,type="o",col="firebrick2",xlab="Generation",ylab="W&C Fis",main="Size=100, Fitness",ylim=c(-1.5,1))
+plot(data1$gen,data1$WC,type="o",col="firebrick2",xlab="Generation",ylab="W&C Fis",main="Size=1000, Fitness",ylim=c(-1.5,1))
 points(data1$gen,data2$WC, type="o",col="dodgerblue4")
 points(data1$gen,data3$WC,type="o",col="forestgreen")
 legend("bottomright",cex=0.75,c("allo=0","allo=0.5","allo=1"),col=c("firebrick2","dodgerblue4","forestgreen"),lty=c(1,1,1))
 
-plot(data1$gen,data1$RH,type="o",col="firebrick2",xlab="Generation",ylab="R&H Fis",main="Size=100, Fitness",ylim=c(-1.5,1))
+plot(data1$gen,data1$RH,type="o",col="firebrick2",xlab="Generation",ylab="R&H Fis",main="Size=1000, Fitness",ylim=c(-1.5,1))
 points(data1$gen,data2$RH, type="o",col="dodgerblue4")
 points(data1$gen,data3$RH,type="o",col="forestgreen")
 legend("bottomright",cex=0.75,c("allo=0","allo=0.5","allo=1"),col=c("firebrick2","dodgerblue4","forestgreen"),lty=c(1,1,1))
