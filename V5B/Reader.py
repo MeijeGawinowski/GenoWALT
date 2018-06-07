@@ -119,9 +119,12 @@ class Reader:
         chrom_count = list(unique[1]) # occurence of each chromosomes (sorted)
         
         for i in range(np.shape(data)[0]): # transformation of trait information from string to a list of string
-            data[i,0] = [data[i,0]]
-            data[i,3] = [data[i,3]]
-            data[i,5] = [data[i,5]]
+            if isinstance(data[i,0],list) == False :
+                data[i,0] = [data[i,0]]
+            if isinstance(data[i,3],list) == False :
+                data[i,3] = [data[i,3]]
+            if isinstance(data[i,5],list) == False :
+                data[i,5] = [data[i,5]]
         
         for i in range(len(unique_chrom)): # for each unique value of chromosome
             if chrom_count[i] > 1: # if the chromosome is present more than once in the list
