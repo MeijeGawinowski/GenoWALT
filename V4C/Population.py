@@ -32,10 +32,10 @@ class Population():
     def __init__(self):
         self.nchrom = 21
         self.ploidy = 2
-        self.trt_interest = 'PH'
+        self.trt_interest = ['PH']
         
 
-    def Creation(self,tab_qtl,tab_loci,dict_qtl,genoPop,pheno):
+    def Creation(self,tab_qtl,tab_loci,genoPop,pheno):
         # Information on the population phenotype
         datPop = pheno[0] # phenotype table
         header = pheno[1] # traits

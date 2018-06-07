@@ -23,7 +23,7 @@
 
 import os
 
-os.chdir('/home/meije/Documents/CODE/V4C')
+os.chdir('/home/meije/Documents/GenoWALT/V4C')
 
 from Reader import *
 from WALTerReader import *
@@ -60,7 +60,7 @@ print("Table des QTL : ",qtl_tab)
 
 # Creation of the parent population 
 parpop_object = Population()
-parpop = parpop_object.Creation(tab_qtl,tab_loci,dict_qtl,genoPop,pheno)
+parpop = parpop_object.Creation(tab_qtl,tab_loci,genoPop,pheno)
 #mean_PH = parpop_object.getMean(parpop)
 print("Parent population :")
 sim.dump(parpop)
@@ -71,7 +71,7 @@ print("Information Fields of the parent population : ",parpop.infoFields())
 
 # Reproduction of the parent population
 simu_object = Simulation()
-offpop = simu_object.create_controlledSimulation(parpop)
+offpop = simu_object.create_FitnessSimulation(parpop)
 print("Offsprings population : ")
 sim.dump(offpop)
 print("Information Fields of the offspring population : ",offpop.infoFields())

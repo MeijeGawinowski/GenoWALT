@@ -30,7 +30,7 @@ import copy as cp
 class Simulation():
     
     def __init__(self,N):
-        self.generations = 10
+        self.generations = 1
         self.replicat = 1
         self.selfing = 0.0 # proportion of autogamy in the population
         self.selection = 'fitness' # selection trait for reproduction

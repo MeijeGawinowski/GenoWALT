@@ -38,7 +38,7 @@ class Offspring():
 
     def __init__(self,trt_interest):
         self.trt_interest = trt_interest
-        self.trt_mean = [51.9,62]
+        self.trt_mean = [51.9]
         self.choice_pheno = "rescaling" # or "rescaling"
 
 
@@ -97,7 +97,9 @@ class Offspring():
         init_min = min(init)
         if init_min < 0:
             init = list(np.add(-init_min,init))
-        y = [(real_max-real_min)/(max(init)-min(init))*init[i]+real_min for i in range(len(init))]
+        A=real_max-real_min
+        B=max(init)-min(init)
+        y = [(A/B)*init[i]+real_min for i in range(len(init))]
         return(y)
     
     def trt_indices(self,tab_qtl):

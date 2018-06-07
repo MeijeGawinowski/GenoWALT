@@ -92,7 +92,7 @@ class Simulation():
         for i in range(N_ind):
             # for the individual i
             # print("Progeny of individual N°",i)
-            scheme=list(np.random.choice([0,1],size=dynN_des[i], replace=True,p=[0.8,0.2]))
+            scheme=list(np.random.choice([0,1],size=dynN_des[i], replace=True,p=[self.selfing,1-self.selfing]))
             # print(scheme)
             N_auto=scheme.count(0)
             N_allo=scheme.count(1)
@@ -164,13 +164,6 @@ class Simulation():
     
     def autoTagger(self,mode):
         return(0)
-    
-    def check_list(self,L):
-        out=[]
-        for i in range(len(L)):
-            if L[i]!=0: # un individu n'a pas de descendant
-                out.append(i)
-        return(out)
         
     def create_Mating(self,parpop):
         recomb_loci = range(sum(list(parpop.numLoci()))-1) # for the computation of recombination rate per locus we don't take into account the last locus (because it has already been taken into account by the computation of previous loci)
