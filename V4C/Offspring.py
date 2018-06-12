@@ -101,22 +101,8 @@ class Offspring():
         B=max(init)-min(init)
         y = [(A/B)*init[i]+real_min for i in range(len(init))]
         return(y)
-    
-    def trt_indices(self,tab_qtl):
-        idx_list = {}
-        for trt in self.trt_interest :
-            sublist = []
-            for i in range(np.shape(tab_qtl)[0]):
-                list_trt = tab_qtl[i,0]
-                try :
-                    idx = list_trt.index(trt)
-                    sublist.append(idx)
-                except ValueError :
-                    sublist.append(-1)
-            idx_list[trt] = sublist
-        return(idx_list)
 
-    def trt_indices2(self,tab_qtl,trt):
+    def trt_indices(self,tab_qtl,trt):
         sublist = []
         for i in range(np.shape(tab_qtl)[0]):
             list_trt = tab_qtl[i,0]
@@ -138,7 +124,7 @@ class Offspring():
             trt_idx = self.trt_interest.index(trt)
             # print("init",N_ind,N_qtl)
             #tab_pheno = np.zeros((N_ind,len(self.trt_interest)+1))
-            list_trt_indices = self.trt_indices2(tab_qtl,trt)
+            list_trt_indices = self.trt_indices(tab_qtl,trt)
             newQTLtab = cp.deepcopy(qtltab)
             comp = 0
             qtl = 0
