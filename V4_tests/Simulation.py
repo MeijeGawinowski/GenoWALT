@@ -32,7 +32,7 @@ class Simulation():
     def __init__(self,N):
         self.generations = 1
         self.replicat = 1
-        self.selfing = 0.0 # proportion of autogamy in the population
+        self.selfing = 1.0 # proportion of autogamy in the population
         self.selection = 'fitness' # selection trait for reproduction
         self.opt = "Haldane" # computation option for recombination rates
         self.newSize = N
