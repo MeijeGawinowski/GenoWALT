@@ -64,13 +64,13 @@ print("Generation nb 0")
 N_gen = 25
 
 parpop = init_pop # initialization of the parental population (gen 0)
-saveCSV(init_pop,sexFormatter=None,affectionFormatter=None,genoFormatter={(0,0):"1,1",(1,0):"2,1",(0,1):"1,2",(1,1):"2,2"},sep="\t",filename="Tests/LD/pegas/Fitness_Reproduction/allo0/pop0.txt")
+saveCSV(init_pop,sexFormatter=None,affectionFormatter=None,genoFormatter={(0,0):"1|1",(1,0):"2|1",(0,1):"1|2",(1,1):"2|2"}, sep="\t", filename="thetaA/rep1/pop0.txt")
 for g in range(1,N_gen):
 	print("Generation nb ",g)
 	# Reproduction of the parent population
 	simu_object = Simulation(N_ind)
 	offpop = simu_object.create_FitnessSimulation(parpop)
-	namefile = "Tests/LD/pegas/Fitness_Reproduction/allo0/pop"+str(g)+".txt"
+	namefile = "thetaA/rep1/pop"+str(g)+".txt"
 	saveCSV(offpop,sexFormatter=None,affectionFormatter=None,genoFormatter={(0,0):"1,1",(1,0):"1,0",(0,1):"0,1",(1,1):"1,1"},sep="\t",filename=namefile)
 	off_object = Offspring("")
 	geno_off = off_object.Result(offpop,conv,tab_qtl) # dictionary of new pop
